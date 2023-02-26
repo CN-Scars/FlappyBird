@@ -32,6 +32,8 @@ Widget::~Widget()
 
 void Widget::on_startGameButton_clicked()
 {
+    scene->removeBird();
+    scene->addBird();
     scene->startGame();
     ui->startGameButton->setText("重新开始");
 }

@@ -14,11 +14,9 @@ Scene::Scene(QObject *parent) : QGraphicsScene(parent),
 
 void Scene::addBird()
 {
-//    removeItem(bird);
-//    delete bird;
-//    bird = nullptr;
     //初始化小鸟
     bird = new BirdItem(QPixmap(":/images/bird_blue_up.png"));
+    bird->setPos(0, 0);
     addItem(bird);
 }
 
@@ -43,7 +41,6 @@ void Scene::startGame()
         setGameOn(true);
         BirdTimer->start(1000); //开启计时器
     }
-
 }
 
 void Scene::setUpPipeTimer()
@@ -167,6 +164,16 @@ void Scene::setScore(int newScore)
 void Scene::resetScore()
 {
     setScore({}); // TODO: Adapt to use your actual default value
+}
+
+void Scene::removeBird()
+{
+    if ( bird )
+    {
+        removeItem(bird);
+        delete bird;
+        bird = nullptr;
+    }
 }
 
 bool Scene::getGameOn() const

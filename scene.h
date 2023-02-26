@@ -25,6 +25,8 @@ public:
     void setScore(int newScore);
     void resetScore();
 
+    void removeBird();
+
 public slots:
     // QGraphicsScene interface
 protected:
