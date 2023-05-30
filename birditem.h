@@ -18,7 +18,7 @@ public:
     qreal rotation() const;
     void setRotation(qreal newRotation);
 
-    void shootUp(); //实现让小鸟通过点击从而上升的方法
+    void shootUp(); // 实现让小鸟通过点击从而上升的方法
     void startFly();
     void freezeBird();
 
@@ -28,26 +28,26 @@ public slots:
     void fallDown();
 
 private:
-    enum WingState {    //存储翅膀状态的枚举型
+    enum WingState {    // 存储翅膀状态的枚举型
         Up,
         Middle,
         Down
     };
-    void updatePixmap();    //更改小鸟翅膀状态
+    void updatePixmap();    // 更改小鸟翅膀状态
 
     WingState wingState;
-    bool wingDirection; //true：翅膀方向朝上，false：翅膀方向朝下
+    bool wingDirection; // true：翅膀方向朝上，false：翅膀方向朝下
     qreal m_y;
     qreal m_rotation;
     QPropertyAnimation *yAnimation;
-    QPropertyAnimation *rotationAnimation;  //旋转动画
-    qreal groundPosition;   //地面的位置
-    qreal topPosition;  //顶部的位置
+    QPropertyAnimation *rotationAnimation;  // 旋转动画
+    qreal groundPosition;   // 地面的位置
+    qreal topPosition;  // 顶部的位置
 
     bool birdOnTheGroundOrTop();
 
 signals:
-    void gameFail(); //游戏失败信号
+    void gameFail(); // 游戏失败信号
 
 };
 

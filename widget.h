@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QSettings>
 #include <scene.h>
 
 QT_BEGIN_NAMESPACE
@@ -16,12 +17,19 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;   // 在widget类中重载closeEvent
+
 private slots:
     void on_startGameButton_clicked();
 
 private:
     Ui::Widget *ui;
 
-    Scene *scene;   //创建一个对象返回场景
+    int bestscore;
+
+    Scene *scene;   // 创建一个对象返回场景
+
 };
+
 #endif // WIDGET_H

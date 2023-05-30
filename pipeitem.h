@@ -8,10 +8,10 @@
 class PipeItem : public QObject, public QGraphicsItemGroup
 {
     Q_OBJECT
-    Q_PROPERTY(qreal x READ x WRITE setX)   //柱子的属性
+    Q_PROPERTY(qreal x READ x WRITE setX)   // 柱子的属性
 public:
     explicit PipeItem();
-    ~PipeItem();    //PipeItem对象的析构函数
+    ~PipeItem();    // PipeItem对象的析构函数
 
     qreal x() const;
     void setX(qreal newX);
@@ -20,8 +20,8 @@ public:
 
 private:
     bool collideWithBird();
-    QGraphicsPixmapItem *topPipe;   //上方的柱子
-    QGraphicsPixmapItem *bottomPipe;    //下方的柱子
+    QGraphicsPixmapItem *topPipe;   // 上方的柱子
+    QGraphicsPixmapItem *bottomPipe;    // 下方的柱子
     QPropertyAnimation *xAnimation;
     int yRandom;
     qreal m_x;
@@ -29,7 +29,7 @@ private:
     bool birdPassed;
 
 signals:
-    void gameFail(); //游戏失败信号
+    void gameFail(); // 游戏失败信号
 
 };
 

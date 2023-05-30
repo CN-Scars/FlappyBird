@@ -4,14 +4,14 @@
 
 BirdItem::BirdItem(QPixmap pixmap) :
     wingState(WingState::Up),
-    wingDirection(false)    //默认翅膀方向朝下
+    wingDirection(false)    // 默认翅膀方向朝下
 {
     setPixmap(pixmap);
-    QTimer *birdWingsTimer = new QTimer(this);  //使用计时器定时改变小鸟翅膀的状态
+    QTimer *birdWingsTimer = new QTimer(this);  // 使用计时器定时改变小鸟翅膀的状态
     connect(birdWingsTimer, &QTimer::timeout, [=](){
         updatePixmap();
     });
-    birdWingsTimer->start(80);  //拍打间隔时间（ms）
+    birdWingsTimer->start(80);  // 拍打间隔时间（ms）
 
     groundPosition = scenePos().y() + 230;
     topPosition = scenePos().y() - 260;
@@ -33,13 +33,13 @@ void BirdItem::updatePixmap()
 {
     if ( wingState == WingState::Middle )
     {
-        if ( wingDirection )    //翅膀方向朝上
+        if ( wingDirection )    // 翅膀方向朝上
         {
             setPixmap(QPixmap(":/images/bird_blue_up.png"));
             wingState = WingState::Up;
             wingDirection = false;
         }
-        else    //翅膀方向朝下
+        else    // 翅膀方向朝下
         {
             setPixmap(QPixmap(":/images/bird_blue_down.png"));
             wingState = WingState::Down;
@@ -69,7 +69,7 @@ qreal BirdItem::y() const
 
 void BirdItem::setY(qreal newY)
 {
-    qDebug() << "new_Y = " << newY << "m_y = " << m_y << "newY - m_y = " << newY - m_y;
+//    qDebug() << "new_Y = " << newY << "m_y = " << m_y << "newY - m_y = " << newY - m_y;
     qreal dy = newY - m_y;
     moveBy(0, dy);  //moveBy(dx, dy);
     m_y = newY;
@@ -102,7 +102,7 @@ void BirdItem::shootUp()
     yAnimation->setStartValue(curPos_y);
     yAnimation->setEndValue(curPos_y - scene()->sceneRect().height() / 8);  //小鸟弹跳的高度
     yAnimation->setEasingCurve(QEasingCurve::OutQuad);
-    yAnimation->setDuration(285);   //弹起所花费时间
+    yAnimation->setDuration(285);   // 弹起所花费时间
 
     connect(yAnimation, &QPropertyAnimation::finished, [=](){
         fallDown();
@@ -110,7 +110,7 @@ void BirdItem::shootUp()
 
     yAnimation->start();
 
-    //将小鸟旋转回来
+    // 将小鸟旋转回来
     rotateTo(-20, 200, QEasingCurve::OutCubic);
 }
 
@@ -143,7 +143,7 @@ void BirdItem::fallDown()
         yAnimation->setStartValue(y());
         yAnimation->setEasingCurve(QEasingCurve::InQuad);
         yAnimation->setEndValue(groundPosition);
-        yAnimation->setDuration(800);   //下落时间
+        yAnimation->setDuration(800);   // 下落时间
         yAnimation->start();
 
         rotateTo(90, 1200, QEasingCurve::InCubic);
